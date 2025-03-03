@@ -2,12 +2,13 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-SIZE=[
+SIZE = [
     ("Tiny", "Tiny"),
     ("Small", "Small"),
     ("Medium", "Medium"),
     ("Large", "Large")
 ]
+
 
 class Breed(models.Model):
     """Модель породы собак
@@ -59,10 +60,9 @@ class Breed(models.Model):
     )
 
     def __str__(self):
-            """Возвращает строковое представление объекта"""
+        """Возвращает строковое представление объекта"""
 
-            return self.name
-    
+        return self.name
 
     class Meta:
         """Метаданные для модели"""
@@ -110,8 +110,7 @@ class Dog(models.Model):
         max_length=40
     )
 
-
     class Meta:
         """Метаданные для модели Dog."""
-        
+
         db_table = 'dog'

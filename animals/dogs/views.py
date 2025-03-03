@@ -16,7 +16,7 @@ class BreedViewSet(viewsets.ModelViewSet):
         queryset (QuerySet): Список объектов породы с аннотацией `dog_count`.
         serializer_class (Serializer): Сериализатор для породы.
     """
-    
+
     queryset = Breed.objects.annotate(
         dog_count=Count('breeds')
     )
@@ -28,13 +28,13 @@ class DogViewSet(viewsets.ModelViewSet):
     API-представление для управления собаками
 
     ViewSet выполняет CRUD-операции над объектами собак (Dog)
-    Добавляет аннотацию `avg_age`, содержащую средний возраст собак данной породы
+    Добавляет аннотацию `avg_age` для среднего возраста собак данной породы
 
     Attributes:
         queryset (QuerySet): Список объектов собак с аннотацией `avg_age`.
         serializer_class (Serializer): Сериализатор для собаки.
     """
-    
+
     queryset = Dog.objects.annotate(
         avg_age=Subquery(
             Dog.objects.filter(

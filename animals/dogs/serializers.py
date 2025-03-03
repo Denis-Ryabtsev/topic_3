@@ -6,13 +6,14 @@ from dogs.models import Dog, Breed
 
 class BreedSerializer(serializers.ModelSerializer):
     """ Сериализатор для модели Breed
-        К модели Breed добавляет поле dog_count для отображения количества собак породы
-    
+        К модели Breed добавляет поле dog_count \
+            для отображения количества собак породы
+
     Attributes:
         dog_count (int): Количество собак данной породы
 
     """
-    
+
     dog_count: int = serializers.IntegerField(
         read_only=True
     )
@@ -42,7 +43,7 @@ class DogSerializer(serializers.ModelSerializer):
     breed: str = serializers.PrimaryKeyRelatedField(
         queryset=Breed.objects.all()
     )
-    breed_count: int = serializers.SerializerMethodField() 
+    breed_count: int = serializers.SerializerMethodField()
 
     class Meta:
         """Метаданные для сериализатора"""
@@ -54,7 +55,6 @@ class DogSerializer(serializers.ModelSerializer):
             'breed',
             'breed_count'
         ]
-    
 
     def get_avg_age(self, obj: Dog) -> int:
         """Вычисляет средний возраст собак данной породы.
