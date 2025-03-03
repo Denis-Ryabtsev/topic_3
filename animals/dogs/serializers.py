@@ -55,7 +55,7 @@ class DogSerializer(serializers.ModelSerializer):
             'breed_count'
         ]
     
-    
+
     def get_avg_age(self, obj: Dog) -> int:
         """Вычисляет средний возраст собак данной породы.
 
