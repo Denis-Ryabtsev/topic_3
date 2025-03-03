@@ -15,5 +15,3 @@ class Setting(BaseSettings):
 
 
 setting = Setting()
-
-print(setting)
