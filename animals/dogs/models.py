@@ -1,12 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# name (строка символов)
-# size (строка символов) [должно принимать значения Tiny, Small, Medium, Large]
-# friendliness (поле целого числа) [должно принимать значения от 1 до 5]
-# trainability (поле целого числа) [должно принимать значения от 1 до 5]
-# shedding_amount (поле целого числа) [должно принимать значения от 1 до 5]
-# exercise_needs (поле целого числа) [должно принимать значения от 1 до 5]
 
 SIZE=[
     ("Tiny", "Tiny"),
@@ -16,6 +10,19 @@ SIZE=[
 ]
 
 class Breed(models.Model):
+    """Модель породы собак
+
+    Содержит информацию о породе и ее характеристиках
+
+    Attributes:
+        name (CharField): Название породы
+        size (CharField): Размер породы (Tiny, Small, Medium, Large).
+        friendliness (IntegerField): Дружелюбие (1-5).
+        trainability (IntegerField): Обучаемость (1-5).
+        shedding_amount (IntegerField): Уровень линьки (1-5).
+        exercise_needs (IntegerField): Необходимость физической нагрузки (1-5).
+    """
+
     id = models.AutoField(
         primary_key=True
     )
@@ -51,14 +58,33 @@ class Breed(models.Model):
         ]
     )
 
-    class Meta:
-        db_table = 'breed'
-
     def __str__(self):
-        return self.name
+            """Возвращает строковое представление объекта"""
+
+            return self.name
+    
+
+    class Meta:
+        """Метаданные для модели"""
+
+        db_table = 'breed'
 
 
 class Dog(models.Model):
+    """Модель собаки
+
+    Описывает отдельную собаку и ее характеристики
+
+    Attributes:
+        name (CharField): Имя собаки
+        age (IntegerField): Возраст собаки
+        breed (ForeignKey): Связь с породой
+        gender (CharField): Пол собаки
+        color (CharField): Окрас собаки
+        favorite_food (CharField): Любимая еда
+        favorite_toy (CharField): Любимая игрушка
+    """
+
     id = models.AutoField(
         primary_key=True
     )
@@ -84,6 +110,8 @@ class Dog(models.Model):
         max_length=40
     )
 
-    class Meta:
-        db_table = 'dog'
 
+    class Meta:
+        """Метаданные для модели Dog."""
+        
+        db_table = 'dog'
