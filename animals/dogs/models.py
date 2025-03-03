@@ -54,6 +54,9 @@ class Breed(models.Model):
     class Meta:
         db_table = 'breed'
 
+    def __str__(self):
+        return self.name
+
 
 class Dog(models.Model):
     id = models.AutoField(
